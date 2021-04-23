@@ -1,0 +1,141 @@
+@import 'reset';
+@import 'variables';
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $sitecolor4;
+  color: $sitecolor1;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  height: $sitesize1;
+  line-height: $sitesize1;
+  font-size: $fontsize1;
+  text-align: center;
+}
+
+.tracking_form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 70%, 780px);
+  min-height: 160px;
+  background-color: $sitecolor2;
+  border-radius: 12px;
+  padding: 20px 0;
+  box-shadow: 0px 0px 8px $sitecolor3;
+  text-align: center;
+}
+
+.request_set {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.request_set:first-of-type .request_remove_set {
+  display: none;
+}
+
+.request_item {
+  position: relative;
+}
+
+input[type='text'] + label {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: $sitecolor5;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+input[type='text'] {
+  margin: 12px;
+  background: transparent;
+  border: 0px;
+  outline: none;
+  border-bottom: 2px solid $sitecolor5;
+  width: 260px;
+  font-size: $fontsize1;
+  color: $sitecolor5;
+}
+
+input[type='text']:focus ~ label,
+input[type='text']:not(:placeholder-shown) ~ label {
+  top: -4px;
+  font-size: 14px;
+  color: $sitecolor1;
+}
+
+input[type='text']:focus,
+input[type='text']:not(:placeholder-shown) {
+  border-bottom: 2px solid $sitecolor1;
+}
+
+input[type='submit'],
+input[type='button'] {
+  background: transparent;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  color: $sitecolor5;
+}
+
+input[type='submit'] {
+  font-size: $fontsize1;
+}
+
+.request_add_set,
+.request_remove_set {
+  font-size: $fontsize2;
+}
+
+.request_action {
+  font-size: $fontsize3;
+}
+
+input[type='submit']:hover,
+input[type='submit']:focus,
+input[type='button']:hover,
+input[type='button']:focus {
+  color: $sitecolor1;
+}
+
+input[type='submit']:focus-visible,
+input[type='button']:focus-visible {
+  outline: 2px solid $sitecolor5;
+  z-index: 2;
+  outline-offset: 1px;
+}
+
+.tracking_result {
+  width: 100%;
+  margin: 10px;
+
+  h2 {
+    margin: 10px;
+  }
+}
+
+.tracking_result__wrapper {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  padding: 0 10px;
+}
+
+.tracking-result__caption,
+.tracking-result__text {
+  box-sizing: border-box;
+  height: 30px;
+  text-align: left;
+}
