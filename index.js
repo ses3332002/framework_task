@@ -108,11 +108,11 @@ function renderDynamicBlocks() {
 function renderRequestSet() {
   return `<div class=${styles.request_set}>
             <div class=${styles.request_item}>
-              <input type="text" name="invoice_number" value="" placeholder="" required/>
+              <input type="text" name="invoice_number" value="" placeholder=" " required/>
               <label for="invoice_number">${UIStrings.invoiceString}</label>
             </div>
             <div class=${styles.request_item}>
-              <input type="text" name="phone_number" value="" pattern="[0-9]{0,10}" placeholder=""/>
+              <input type="text" name="phone_number" value="" pattern="[0-9]{0,10}" placeholder=" "/>
               <label for="phone_number">${UIStrings.phoneString}</label>
             </div>
             <input type="button" class=${styles.request_add_set} onclick="addRequestSet(event)" value="+"/>

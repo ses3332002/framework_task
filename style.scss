@@ -19,11 +19,13 @@ footer {
   text-align: center;
 }
 
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .tracking_form {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: clamp(300px, 70%, 780px);
   min-height: 160px;
   background-color: $sitecolor2;

@@ -17,7 +17,7 @@ export const UIStrings = {
 
 export const topLevelStrings = {
   headerString: 'Трекинг посылок Новой почты',
-  footerString: 'Версия 1.0',
+  footerString: 'Версия 1.1',
   resultString: 'Результат',
 };
 
