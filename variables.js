@@ -3,7 +3,8 @@ export const topLevelFrameBlocks = ['header', 'main', 'footer'];
 export const UIStrings = {
   invoiceString: 'Введите номер квитанции',
   phoneString: 'Введите номер телефона',
-  buttonString: 'Искать',
+  searchButtonString: 'Искать',
+  clearButtonString: 'Очистить',
   routeString: 'Маршрут',
   weightString: 'Вес, кг',
   placesString: 'Мест',
@@ -13,11 +14,8 @@ export const UIStrings = {
   noString: 'нет',
   returnString: 'Можно вернуть',
   redirectString: 'Можно переслать',
-};
-
-export const topLevelStrings = {
   headerString: 'Трекинг посылок Новой почты',
-  footerString: 'Версия 1.1',
+  footerString: 'Версия 1.2',
   resultString: 'Результат',
 };
 
@@ -25,10 +23,10 @@ export const topLevelStrings = {
 export const url = 'https://api.novaposhta.ua/v2.0/json/';
 
 export const requestOptions = {
-  contentType: 'application/json',
+  // contentType: 'application/json',
   mode: 'cors',
   cache: 'no-cache',
   redirect: 'follow',
   method: 'POST',
-  dataType: 'jsonp',
+  // dataType: 'jsonp',
 };

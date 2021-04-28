@@ -1,7 +1,6 @@
 import {
   topLevelFrameBlocks,
   UIStrings,
-  topLevelStrings,
   requestOptions,
   // apiKey,
   url,
@@ -15,18 +14,18 @@ function renderSemanticBlock(block) {
 }
 
 function renderHeader() {
-  DOMFrameBlocks[0].innerHTML = `<h1>${topLevelStrings.headerString}</h1>`;
+  DOMFrameBlocks[0].innerHTML = `<h1>${UIStrings.headerString}</h1>`;
 }
 
 function renderFooter() {
-  DOMFrameBlocks[DOMFrameBlocks.length - 1].innerHTML = `${topLevelStrings.footerString}`;
+  DOMFrameBlocks[DOMFrameBlocks.length - 1].innerHTML = `${UIStrings.footerString}`;
 }
 
 function getTrackingData(event) {
   event.preventDefault();
-  const requests = Array.from(document.querySelectorAll(`.${styles.request_set}`));
+  const requestSets = Array.from(document.querySelectorAll(`.${styles.request_set}`));
   const requestDocuments = [];
-  requests.forEach(prepareDocument);
+  requestSets.forEach(prepareDocument);
 
   function prepareDocument(requestItem) {
     requestDocuments.push({
@@ -56,7 +55,7 @@ function getTrackingData(event) {
 function renderResult(resultData) {
   const trackingResultFields = Array.from(document.querySelectorAll(`.${styles.tracking_result}`));
   resultData.forEach((item, index) => {
-    trackingResultFields[index].innerHTML = `<h2>${topLevelStrings.resultString}:</h2>
+    trackingResultFields[index].innerHTML = `<h2>${UIStrings.resultString}:</h2>
   <div class=${styles.tracking_result__wrapper}>
     <div class=${styles.tracking_result__caption}>${UIStrings.routeString}:</div>
     <div class=${styles.tracking_result__text}>${item.CitySender}-${item.CityRecipient}</div>
@@ -85,23 +84,42 @@ function renderResult(resultData) {
 window.getTrackingData = getTrackingData;
 window.addRequestSet = addRequestSet;
 window.removeRequestSet = removeRequestSet;
+window.resetApp = resetApp;
+
+function resetApp() {
+  const requestSets = Array.from(document.querySelectorAll(`.${styles.request_set}`));
+  requestSets.forEach((requestSet, index) => {
+    if (index > 0) {
+      requestSet.remove();
+    }
+  });
+  if (document.querySelector(`.${styles.tracking_result}`)) {
+    document.querySelector(`.${styles.tracking_result}`).innerHTML = '';
+  }
+  document.forms.request_form.reset();
+}
 
 function renderMain() {
   DOMFrameBlocks[1].innerHTML = `
        <div class=${styles.tracking_form}>
       <form name="request_form" autocomplete="off" onsubmit="getTrackingData(event)">
         ${renderRequestSet()}
-        <input type="submit" value="${UIStrings.buttonString}" class=${styles.request_submit} />
+        <input type="submit" value="${UIStrings.searchButtonString}" class=${
+    styles.request_submit
+  } />
+        <input type="button" value="${UIStrings.clearButtonString}" class=${
+    styles.request_submit
+  } onclick="resetApp()" />
       </form>
     </div>`;
 }
 
-function renderStaticBlocks() {
-  renderHeader();
-  renderFooter();
-}
+// function renderStaticBlocks() {
+// }
 
 function renderDynamicBlocks() {
+  renderHeader();
+  renderFooter();
   renderMain();
 }
 
@@ -117,7 +135,7 @@ function renderRequestSet() {
             </div>
             <input type="button" class=${styles.request_add_set} onclick="addRequestSet(event)" value="+"/>
             <input type="button" class=${styles.request_remove_set} onclick="removeRequestSet(event)" value="-"/>
-             <div class=${styles.tracking_result}></div>
+            <div class=${styles.tracking_result}></div>
           </div>`;
 }
 
@@ -137,7 +155,7 @@ let topLevelFrameString = topLevelFrameBlocks.reduce(
 function renderApp() {
   document.body.insertAdjacentHTML('afterbegin', topLevelFrameString);
   topLevelFrameBlocks.forEach(item => DOMFrameBlocks.push(document.querySelector(`${item}`)));
-  renderStaticBlocks();
+  // renderStaticBlocks();
   renderDynamicBlocks();
 }
 

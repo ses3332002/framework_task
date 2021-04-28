@@ -93,7 +93,12 @@ input[type='button'] {
   color: $sitecolor5;
 }
 
-input[type='submit'] {
+input[type='button']:disabled {
+  color: $sitecolor4;
+  cursor: inherit;
+}
+
+.request_submit {
   font-size: $fontsize1;
 }
 
@@ -122,7 +127,7 @@ input[type='button']:focus-visible {
 
 .tracking_result {
   width: 100%;
-  margin: 10px;
+  // margin: 10px;
 
   h2 {
     margin: 10px;
@@ -132,7 +137,8 @@ input[type='button']:focus-visible {
 .tracking_result__wrapper {
   display: grid;
   grid-template-columns: 30% 70%;
-  padding: 0 10px;
+  gap: 10px;
+  // padding: 0 10px;
 }
 
 .tracking_result__caption,
