@@ -15,7 +15,7 @@ export const UIStrings = {
   returnString: 'Можно вернуть',
   redirectString: 'Можно переслать',
   headerString: 'Трекинг посылок Новой почты',
-  footerString: 'Версия 1.2',
+  footerString: 'Версия 1.3',
   resultString: 'Результат',
 };
 
@@ -30,3 +30,5 @@ export const requestOptions = {
   method: 'POST',
   // dataType: 'jsonp',
 };
+
+export const freshnessTime = 18000000;

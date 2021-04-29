@@ -4,6 +4,7 @@ import {
   requestOptions,
   // apiKey,
   url,
+  freshnessTime,
 } from './variables.js';
 
 import styles from './style';
@@ -24,11 +25,11 @@ function renderFooter() {
 function getTrackingData(event) {
   event.preventDefault();
   const requestSets = Array.from(document.querySelectorAll(`.${styles.request_set}`));
-  const requestDocuments = [];
+  const requestedDocuments = [];
   requestSets.forEach(prepareDocument);
 
   function prepareDocument(requestItem) {
-    requestDocuments.push({
+    requestedDocuments.push({
       DocumentNumber: requestItem.querySelector('input[name = invoice_number]').value,
       Phone: requestItem.querySelector('input[name = phone_number]').value,
     });
@@ -41,20 +42,54 @@ function getTrackingData(event) {
       Language: 'RU',
     },
   };
-  requestTemplate.methodProperties.Documents = requestDocuments;
-  requestOptions.body = JSON.stringify(requestTemplate);
-  fetch(url, requestOptions)
-    .then(response => {
-      return response.json();
-    })
-    .then(result => {
-      renderResult(result.data);
+
+  const documentsForRender = [];
+  const documentsForDownload = [];
+  requestedDocuments.forEach(checkLocalStorage);
+  function checkLocalStorage(item, index) {
+    if (
+      localStorage.getItem(item.DocumentNumber) &&
+      JSON.parse(localStorage.getItem(item.DocumentNumber)).requestTime > new Date() - freshnessTime
+    ) {
+      documentsForRender[index] = JSON.parse(localStorage.getItem(item.DocumentNumber));
+    } else {
+      documentsForDownload.push(item);
+      documentsForRender[index] = 'gotToBeDownloaded';
+    }
+  }
+
+  if (documentsForDownload.length == 0) {
+    renderResult(documentsForRender);
+  } else {
+    requestTemplate.methodProperties.Documents = documentsForDownload;
+    requestOptions.body = JSON.stringify(requestTemplate);
+    fetch(url, requestOptions)
+      .then(response => {
+        return response.json();
+      })
+      .then(result => {
+        manageRezults(result.data);
+      })
+      .catch(err => {
+        console.error('there was some error:', err);
+      });
+  }
+
+  function manageRezults(downloadedRezults) {
+    documentsForRender.forEach(rezult => {
+      if (rezult == 'gotToBeDownloaded') {
+        rezult = downloadedRezults.shift();
+        rezult.requestTime = +new Date();
+        localStorage.setItem(rezult.Number, JSON.stringify(rezult));
+      }
     });
+    renderResult(documentsForRender);
+  }
 }
 
-function renderResult(resultData) {
+function renderResult(resultsData) {
   const trackingResultFields = Array.from(document.querySelectorAll(`.${styles.tracking_result}`));
-  resultData.forEach((item, index) => {
+  resultsData.forEach((item, index) => {
     trackingResultFields[index].innerHTML = `<h2>${UIStrings.resultString}:</h2>
   <div class=${styles.tracking_result__wrapper}>
     <div class=${styles.tracking_result__caption}>${UIStrings.routeString}:</div>
@@ -114,9 +149,6 @@ function renderMain() {
     </div>`;
 }
 
-// function renderStaticBlocks() {
-// }
-
 function renderDynamicBlocks() {
   renderHeader();
   renderFooter();
@@ -155,7 +187,6 @@ let topLevelFrameString = topLevelFrameBlocks.reduce(
 function renderApp() {
   document.body.insertAdjacentHTML('afterbegin', topLevelFrameString);
   topLevelFrameBlocks.forEach(item => DOMFrameBlocks.push(document.querySelector(`${item}`)));
-  // renderStaticBlocks();
   renderDynamicBlocks();
 }
 
