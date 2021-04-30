@@ -26,9 +26,9 @@ function getTrackingData(event) {
   event.preventDefault();
   const requestSets = Array.from(document.querySelectorAll(`.${styles.request_set}`));
   const requestedDocuments = [];
-  requestSets.forEach(prepareDocument);
+  requestSets.forEach(prepareDocuments);
 
-  function prepareDocument(requestItem) {
+  function prepareDocuments(requestItem) {
     requestedDocuments.push({
       DocumentNumber: requestItem.querySelector('input[name = invoice_number]').value,
       Phone: requestItem.querySelector('input[name = phone_number]').value,
@@ -46,14 +46,15 @@ function getTrackingData(event) {
   const documentsForRender = [];
   const documentsForDownload = [];
   requestedDocuments.forEach(checkLocalStorage);
-  function checkLocalStorage(item, index) {
+  function checkLocalStorage(requestedItem, index) {
     if (
-      localStorage.getItem(item.DocumentNumber) &&
-      JSON.parse(localStorage.getItem(item.DocumentNumber)).requestTime > new Date() - freshnessTime
+      localStorage.getItem(requestedItem.DocumentNumber) &&
+      JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)).requestTime >
+        new Date() - freshnessTime
     ) {
-      documentsForRender[index] = JSON.parse(localStorage.getItem(item.DocumentNumber));
+      documentsForRender[index] = JSON.parse(localStorage.getItem(requestedItem.DocumentNumber));
     } else {
-      documentsForDownload.push(item);
+      documentsForDownload.push(requestedItem);
       documentsForRender[index] = 'gotToBeDownloaded';
     }
   }
@@ -63,24 +64,26 @@ function getTrackingData(event) {
   } else {
     requestTemplate.methodProperties.Documents = documentsForDownload;
     requestOptions.body = JSON.stringify(requestTemplate);
+
     fetch(url, requestOptions)
       .then(response => {
         return response.json();
       })
       .then(result => {
-        manageRezults(result.data);
+        manageResults(result.data);
       })
       .catch(err => {
         console.error('there was some error:', err);
       });
   }
 
-  function manageRezults(downloadedRezults) {
-    documentsForRender.forEach(rezult => {
-      if (rezult == 'gotToBeDownloaded') {
-        rezult = downloadedRezults.shift();
-        rezult.requestTime = +new Date();
-        localStorage.setItem(rezult.Number, JSON.stringify(rezult));
+  function manageResults(downloadedResults) {
+    documentsForRender.forEach((result, index) => {
+      if (result == 'gotToBeDownloaded') {
+        result = downloadedResults.shift();
+        result.requestTime = +new Date();
+        localStorage.setItem(result.Number, JSON.stringify(result));
+        documentsForRender[index] = result;
       }
     });
     renderResult(documentsForRender);
