@@ -127,7 +127,6 @@ input[type='button']:focus-visible {
 
 .tracking_result {
   width: 100%;
-  // margin: 10px;
 
   h2 {
     margin: 10px;
@@ -138,12 +137,13 @@ input[type='button']:focus-visible {
   display: grid;
   grid-template-columns: 30% 70%;
   gap: 10px;
-  // padding: 0 10px;
 }
 
 .tracking_result__caption,
 .tracking_result__text {
-  box-sizing: border-box;
   height: 30px;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }

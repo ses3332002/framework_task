@@ -19,7 +19,6 @@ export const UIStrings = {
   resultString: 'Результат',
 };
 
-// export const apiKey = '797cc99d2a4af108e6d6770516130d77';
 export const url = 'https://api.novaposhta.ua/v2.0/json/';
 
 export const requestOptions = {

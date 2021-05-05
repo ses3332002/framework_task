@@ -13,3 +13,6 @@ Main features:
 - requesting of parcel's return;
 - requesting of parcel's redirection;
 - showing current place of parcel on the map.
+
+Demo:
+[Track parcels](https://ses3332002.github.io/framework_task)

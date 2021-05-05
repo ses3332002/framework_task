@@ -1,14 +1,9 @@
-import {
-  topLevelFrameBlocks,
-  UIStrings,
-  requestOptions,
-  // apiKey,
-  url,
-  freshnessTime,
-} from './variables.js';
+import { topLevelFrameBlocks, UIStrings, requestOptions, url, freshnessTime } from './variables.js';
 
 import styles from './style';
 const DOMFrameBlocks = [];
+
+// console.log(process.env.API_KEY);
 
 function renderSemanticBlock(block) {
   return `<${block}></${block}>`;
@@ -110,7 +105,7 @@ function renderResult(resultsData) {
       UIStrings.requestString
     }"/></div>
     <div class=${styles.tracking_result__caption}>${UIStrings.redirectString}:</div>
-    <div class="${styles.tracking_result__text} ${styles.tracking_result__text - status}">${
+    <div class=${styles.tracking_result__text}>${
       item.PossibilityCreateRedirecting ? UIStrings.yesString : UIStrings.noString
     }<input type="button" class=${styles.request_action} disabled value="${
       UIStrings.requestString
