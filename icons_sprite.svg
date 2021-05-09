@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <symbol id="lang_icon-ua" viewBox="0 0 144 96">
+    <rect fill="#0b55b1" x="0" width="144" y="0" height="48"/>
+    <rect fill="#fed953" x="0" width="144" y="48" height="48"/>
+  </symbol>
+  <symbol id="lang_icon-ru" viewBox="0 0 144 96">
+    <rect fill="#f0f0f0" x="0" width="144" y="0" height="32"/>
+    <rect fill="#0b55b1" x="0" width="144" y="32" height="32"/>
+    <rect fill="#d60a2e" x="0" width="144" y="64" height="32"/>
+  </symbol>
+
+  <view id="lang-ua-view" viewBox="0 0 144 96"/>
+  <view id="lang-ru-view" viewBox="0 96 144 96"/>
+
+  <use xlink:href="#lang_icon-ua" width="144" height="96" x="0" y="0"/>
+  <use xlink:href="#lang_icon-ru" width="144" height="96" x="0" y="96"/>
+</svg>
