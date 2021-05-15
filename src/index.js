@@ -28,7 +28,7 @@ function renderHeader(lang = window.appState.lang) {
     <button class=${styles.lang_choose__btn} data-lang="ua" onclick="changeLanguage(event)"></button>
   </div>`;
 }
-
+// TODO: try todo
 function changeLanguage(event, lang = window.appState.lang) {
   if (lang == event.target.dataset.lang) {
     return;
