@@ -1,0 +1,15 @@
+@import './reset';
+@import './variables';
+@import '../components/Header/header';
+@import '../components/Footer/footer';
+@import '../components/Main/main';
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+  color: $sitecolor1;
+  background-color: $sitecolor4;
+  font-family: sans-serif;
+}

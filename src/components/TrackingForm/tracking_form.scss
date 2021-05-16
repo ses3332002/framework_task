@@ -1,0 +1,43 @@
+@import '../../style/variables';
+.tracking_form {
+  width: clamp(300px, 70%, 780px);
+  min-height: 160px;
+  border-radius: 12px;
+  padding: 20px 0;
+  box-shadow: 0px 0px 8px $sitecolor3;
+  background-color: $sitecolor2;
+  text-align: center;
+}
+
+input[type='submit'],
+input[type='button'] {
+  background: transparent;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  color: $sitecolor5;
+}
+
+.request_submit {
+  font-size: $fontsize1;
+}
+
+.request_action {
+  font-size: $fontsize3;
+}
+
+input[type='submit']:hover,
+input[type='submit']:focus,
+input[type='button']:hover,
+input[type='button']:focus {
+  color: $sitecolor1;
+}
+
+button:focus-visible,
+input[type='submit']:focus-visible,
+input[type='button']:focus-visible {
+  outline: 2px solid $sitecolor5;
+  outline-offset: 1px;
+  z-index: 2;
+}

@@ -18,6 +18,8 @@ export const UIStrings = {
     headerString: 'Трекинг посылок Новой почты',
     footerString: 'Версия',
     resultString: 'Результат',
+    ariaLabelRuString: 'Русский язык',
+    ariaLabelUaString: 'Украинский язык',
   },
   ua: {
     invoiceString: 'Введіть номер квитанції',
@@ -31,11 +33,13 @@ export const UIStrings = {
     requestString: 'Замовити',
     yesString: 'так',
     noString: 'ні',
-    returnString: 'Можна повернути',
-    redirectString: 'Можна переслати',
+    returnString: 'Можливо повернути',
+    redirectString: 'Можливо переслати',
     headerString: 'Трекінг посилок Нової пошти',
     footerString: 'Версія',
     resultString: 'Результат',
+    ariaLabelRuString: 'Російська мова',
+    ariaLabelUaString: 'Українська мова',
   },
 };
 
@@ -50,5 +54,11 @@ export const requestOptions = {
   // dataType: 'jsonp',
 };
 
+export const appState = {
+  lang: 'ru',
+  requestedDocuments: [],
+  documentsForDownload: [],
+};
+
 export const freshnessTime = 18000000;
-export const appVersion = '1.4';
+export const appVersion = '1.5';

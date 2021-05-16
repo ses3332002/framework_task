@@ -1,3 +1,5 @@
+@import '../../style/variables';
+
 .lang_choose {
   display: inline-block;
   position: fixed;
@@ -29,12 +31,12 @@
   }
 
   &[data-lang='ru'] {
-    background: url(icons_sprite.svg#lang-ru-view) no-repeat;
+    background: url(./language_icons_sprite.svg#lang-ru-view) no-repeat;
     background-position: center;
     background-size: cover;
   }
   &[data-lang='ua'] {
-    background: url(icons_sprite.svg#lang-ua-view) no-repeat;
+    background: url(./language_icons_sprite.svg#lang-ua-view) no-repeat;
     background-position: center;
     background-size: cover;
   }

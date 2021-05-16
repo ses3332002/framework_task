@@ -1,0 +1,22 @@
+h2 {
+  margin: 10px;
+}
+
+.tracking_result__wrapper {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 10px;
+}
+
+.tracking_result__caption,
+.tracking_result__text {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.tracking_result__caption {
+  font-weight: bold;
+}
