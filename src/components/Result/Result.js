@@ -2,7 +2,7 @@ import { UIStrings } from '../../data/variables';
 import styles from './result';
 
 export function Result(resultItem, lang = window.appState.lang) {
-  if (resultItem.Status) {
+  if (resultItem) {
     return `<h2>${UIStrings[lang].resultString}:</h2>
     <div class=${styles.tracking_result__wrapper}>
     <div class=${styles.tracking_result__caption}>${UIStrings[lang].routeString}:</div>

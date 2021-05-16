@@ -1,5 +1,4 @@
 import { checkLocalStorage } from './checkLocalStorage';
-// import { renderResults } from './changeAppState';
 import { manageResults } from './manageResults';
 import { requestOptions, url } from './variables';
 

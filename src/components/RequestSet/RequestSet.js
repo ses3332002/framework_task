@@ -6,7 +6,7 @@ export { styles as requestSetStyles };
 export function RequestSet(
   invoiceNumber = '',
   phoneNumber = '',
-  result = '',
+  result = null,
   lang = window.appState.lang,
 ) {
   return `<div class=${styles.request_set}>
