@@ -38,6 +38,7 @@ input[type='text'] {
   border-bottom: 2px solid $sitecolor5;
   font-size: $fontsize1;
   color: $sitecolor5;
+  font-family: inherit;
 }
 
 input[type='text']:focus ~ label,

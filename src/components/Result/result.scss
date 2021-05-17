@@ -1,5 +1,8 @@
+@import '../../style/variables';
+
 h2 {
-  margin: 10px;
+  padding: 10px 0 !important;
+  font-weight: bold !important;
 }
 
 .tracking_result__wrapper {
@@ -10,11 +13,12 @@ h2 {
 
 .tracking_result__caption,
 .tracking_result__text {
-  height: 30px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
+  font-size: $fontsize4;
 }
 
 .tracking_result__caption {

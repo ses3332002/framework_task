@@ -1,5 +1,4 @@
 import { RequestSet } from '../components/RequestSet/RequestSet';
-import { renderElement } from '../framework/renderElement';
 import { Main } from '../components/Main/Main';
 
 export function changeLanguage(event, lang = window.appState.lang) {
@@ -15,7 +14,7 @@ export function changeLanguage(event, lang = window.appState.lang) {
 
 export function resetForm(requestedDocuments = window.appState.requestedDocuments) {
   requestedDocuments.length = 0;
-  renderElement(document.querySelector('main'), Main);
+  window.renderApp(document.querySelector('main'), Main);
 }
 
 export function addRequestSet(event) {
