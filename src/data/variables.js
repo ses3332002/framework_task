@@ -21,7 +21,7 @@ export const UIStrings = {
     ariaLabelRuString: 'Русский язык',
     ariaLabelUaString: 'Украинский язык',
   },
-  ua: {
+  uk: {
     invoiceString: 'Введіть номер квитанції',
     phoneString: 'Введіть номер телефону',
     searchButtonString: 'Шукати',

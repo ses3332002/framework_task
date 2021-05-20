@@ -1,6 +1,7 @@
 import { checkLocalStorage } from './checkLocalStorage';
 import { manageResults } from './manageResults';
 import { requestOptions, url } from './variables';
+import { Main } from '../components/Main/Main';
 
 export function getTrackingData(
   event,
@@ -20,7 +21,7 @@ export function getTrackingData(
   requestedDocuments.forEach(checkLocalStorage);
 
   if (documentsForDownload.length == 0) {
-    window.renderApp();
+    window.renderApp(document.querySelector('main'), Main);
   } else {
     requestTemplate.methodProperties.Documents = documentsForDownload;
     requestOptions.body = JSON.stringify(requestTemplate);

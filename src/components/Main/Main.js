@@ -1,5 +1,5 @@
 import { TrackingForm } from '../TrackingForm/TrackingForm';
 
-export function Main(documentsForRender = window.appState.documentsForRender) {
+export function Main() {
   return `${TrackingForm()}`;
 }
