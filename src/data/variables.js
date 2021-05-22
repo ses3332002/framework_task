@@ -18,8 +18,8 @@ export const UIStrings = {
     headerString: 'Трекинг посылок Новой почты',
     footerString: 'Версия',
     resultString: 'Результат',
-    ariaLabelRuString: 'Русский язык',
-    ariaLabelUaString: 'Украинский язык',
+    ruAriaLabelString: 'Русский язык',
+    ukAriaLabelString: 'Украинский язык',
   },
   uk: {
     invoiceString: 'Введіть номер квитанції',
@@ -38,8 +38,8 @@ export const UIStrings = {
     headerString: 'Трекінг посилок Нової пошти',
     footerString: 'Версія',
     resultString: 'Результат',
-    ariaLabelRuString: 'Російська мова',
-    ariaLabelUaString: 'Українська мова',
+    ruAriaLabelString: 'Російська мова',
+    ukAriaLabelString: 'Українська мова',
   },
 };
 
@@ -61,4 +61,4 @@ export const appState = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.5';
+export const appVersion = '1.6';

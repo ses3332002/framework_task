@@ -12,17 +12,20 @@ export function changeLanguage(event, lang = window.appState.lang) {
   }
 }
 
-export function resetForm(requestedDocuments = window.appState.requestedDocuments) {
+export function resetForm() {
+  let requestedDocuments = window.appState.requestedDocuments;
   requestedDocuments.length = 0;
   window.renderApp(document.querySelector('main'), Main);
 }
 
 export function addRequestSet(event) {
-  event.target.parentNode.parentNode.insertAdjacentHTML('afterend', `${RequestSet()}`);
-  document.forms.request_form.oninput();
+  const newRequestSet = document.createDocumentFragment();
+  window.renderApp(newRequestSet, RequestSet);
+  event.target.parentNode.parentNode.after(newRequestSet);
+  window.updateRequestedDocuments();
 }
 
 export function removeRequestSet(event) {
   event.target.parentNode.parentNode.remove();
-  document.forms.request_form.oninput();
+  window.updateRequestedDocuments();
 }

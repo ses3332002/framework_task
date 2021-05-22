@@ -5,7 +5,7 @@ function renderSemanticBlock(block) {
 }
 
 let topLevelFrameString = topLevelFrameBlocks.reduce(
-  (renderString, item) => (renderString += renderSemanticBlock(item)),
+  (renderString, item) => renderString + renderSemanticBlock(item),
   '',
 );
 

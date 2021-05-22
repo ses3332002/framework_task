@@ -2,7 +2,7 @@ import { appState } from './data/variables';
 import { changeLanguage, resetForm, addRequestSet, removeRequestSet } from './data/changeAppState';
 import { updateRequestedDocuments } from './data/updateRequestedDocuments';
 import { getTrackingData } from './data/getTrackingData';
-import { renderApp } from './framework/renderApp';
+import { renderApp, renderApp2 } from './framework/renderApp';
 import { prepareStructure } from './framework/prepareStructure';
 import styles from './style/style';
 

@@ -1,19 +1,25 @@
+/** @jsx createElement */
+/** @jsxFrag createFragment */
 import { Header } from '../components/Header/Header';
 import { Footer } from '../components/Footer/Footer';
 import { Main } from '../components/Main/Main';
+
+import { createElement } from './element';
 export function renderApp(
-  componentElement = [
+  ComponentElement = [
     document.querySelector('header'),
     document.querySelector('footer'),
     document.querySelector('main'),
   ],
-  componentFunction = [Header, Footer, Main],
+  ComponentFunction = [Header, Footer, Main],
 ) {
-  if (!Array.isArray(componentElement)) {
-    componentElement = Array.of(componentElement);
-    componentFunction = Array.of(componentFunction);
+  if (!Array.isArray(ComponentElement)) {
+    ComponentElement = Array.of(ComponentElement);
+    ComponentFunction = Array.of(ComponentFunction);
   }
-  componentElement.forEach((item, index) => {
-    item.innerHTML = componentFunction[index]();
+  ComponentElement.forEach((item, index) => {
+    let Function = ComponentFunction[index];
+    item.innerHTML = '';
+    item.appendChild(<Function />);
   });
 }

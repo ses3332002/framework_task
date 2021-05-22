@@ -3,12 +3,10 @@ import { manageResults } from './manageResults';
 import { requestOptions, url } from './variables';
 import { Main } from '../components/Main/Main';
 
-export function getTrackingData(
-  event,
-  lang = window.appState.lang,
-  requestedDocuments = window.appState.requestedDocuments,
-  documentsForDownload = window.appState.documentsForDownload,
-) {
+export function getTrackingData(event) {
+  let lang = window.appState.lang;
+  let requestedDocuments = window.appState.requestedDocuments;
+  let documentsForDownload = window.appState.documentsForDownload;
   event.preventDefault();
   const requestTemplate = {
     modelName: 'TrackingDocument',
