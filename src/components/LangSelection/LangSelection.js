@@ -4,9 +4,7 @@ import { createElement, createFragment } from '../../framework/element';
 import { UIStrings } from '../../data/variables';
 import styles from './lang_selection';
 
-export function LangSelection() {
-  let lang = window.appState.lang;
-
+export function LangSelection({ lang = window.appState.lang }) {
   function setupLangButtons(langStrings) {
     return Object.keys(langStrings).map((item, index) => {
       let ariaLabelName = item + 'AriaLabelString';

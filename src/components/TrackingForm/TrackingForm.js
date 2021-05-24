@@ -6,8 +6,7 @@ import { UIStrings } from '../../data/variables';
 import styles from './tracking_form';
 import { RequestSet } from '../RequestSet/RequestSet';
 
-export function TrackingForm() {
-  let lang = window.appState.lang;
+export function TrackingForm({ lang = window.appState.lang }) {
   return (
     <div className={styles.tracking_form}>
       <form
@@ -16,7 +15,22 @@ export function TrackingForm() {
         onSubmit={e => window.getTrackingData(e)}
         onInput={window.updateRequestedDocuments}
       >
-        {renderRequestSets()}
+        {renderRequestSets({})}
+        <div className={styles.request_set_buttons}>
+          <input
+            type="button"
+            className={styles.request_add_set}
+            onClick={e => window.addRequestSet(e)}
+            value="+"
+          />
+          <input
+            type="button"
+            className={styles.request_remove_set}
+            onClick={e => window.removeRequestSet(e)}
+            value="-"
+            disabled={!(window.appState.requestedDocuments.length > 1)}
+          />
+        </div>
         <input
           type="submit"
           value={UIStrings[lang].searchButtonString}
@@ -32,13 +46,22 @@ export function TrackingForm() {
     </div>
   );
 
-  function renderRequestSets() {
-    let requestedDocuments = window.appState.requestedDocuments;
+  function renderRequestSets({ requestedDocuments = window.appState.requestedDocuments }) {
     if (requestedDocuments.length == 0) {
-      return RequestSet();
+      requestedDocuments.push({
+        DocumentNumber: '',
+        Phone: '',
+      });
+      return <RequestSet />;
     } else {
       return requestedDocuments.map(item => {
-        return RequestSet(null, item.DocumentNumber, item.Phone, item.result);
+        return (
+          <RequestSet
+            DocumentNumber={item.DocumentNumber}
+            Phone={item.Phone}
+            result={item.result}
+          />
+        );
       });
     }
   }

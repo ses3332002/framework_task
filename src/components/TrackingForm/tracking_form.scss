@@ -25,10 +25,6 @@ input[type='button'] {
   font-size: $fontsize1;
 }
 
-.request_action {
-  font-size: $fontsize3;
-}
-
 input[type='submit']:hover,
 input[type='submit']:focus,
 input[type='button']:hover,
@@ -42,4 +38,18 @@ input[type='button']:focus-visible {
   outline: 2px solid $sitecolor5;
   outline-offset: 1px;
   z-index: 2;
+}
+
+.request_set_buttons {
+  min-width: 110px;
+}
+
+input[type='button']:disabled {
+  color: $sitecolor4;
+  cursor: inherit;
+}
+
+.request_add_set,
+.request_remove_set {
+  font-size: $fontsize2;
 }

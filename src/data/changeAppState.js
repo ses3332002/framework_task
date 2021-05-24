@@ -1,4 +1,3 @@
-import { RequestSet } from '../components/RequestSet/RequestSet';
 import { Main } from '../components/Main/Main';
 
 export function changeLanguage(event, lang = window.appState.lang) {
@@ -19,13 +18,14 @@ export function resetForm() {
 }
 
 export function addRequestSet(event) {
-  const newRequestSet = document.createDocumentFragment();
-  window.renderApp(newRequestSet, RequestSet);
-  event.target.parentNode.parentNode.after(newRequestSet);
-  window.updateRequestedDocuments();
+  window.appState.requestedDocuments.push({
+    DocumentNumber: '',
+    Phone: '',
+  });
+  window.renderApp(document.querySelector('main'), Main);
 }
 
 export function removeRequestSet(event) {
-  event.target.parentNode.parentNode.remove();
-  window.updateRequestedDocuments();
+  window.appState.requestedDocuments.pop();
+  window.renderApp(document.querySelector('main'), Main);
 }
