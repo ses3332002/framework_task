@@ -1,4 +1,6 @@
 import { Main } from '../components/Main/Main';
+import { renderApp } from '../framework/renderApp';
+
 export function manageResults(downloadedResults, requestedDocuments) {
   requestedDocuments.forEach((item, index) => {
     if (item.result == 'gotToBeDownloaded') {
@@ -7,5 +9,5 @@ export function manageResults(downloadedResults, requestedDocuments) {
       localStorage.setItem(item.result.Number, JSON.stringify(item.result));
     }
   });
-  window.renderApp(document.querySelector('main'), Main);
+  renderApp(document.querySelector('main'), Main);
 }

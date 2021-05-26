@@ -2,6 +2,7 @@ import { checkLocalStorage } from './checkLocalStorage';
 import { manageResults } from './manageResults';
 import { requestOptions, url } from './variables';
 import { Main } from '../components/Main/Main';
+import { renderApp } from '../framework/renderApp';
 
 export function getTrackingData(event) {
   let lang = window.appState.lang;
@@ -19,7 +20,7 @@ export function getTrackingData(event) {
   requestedDocuments.forEach(checkLocalStorage);
 
   if (documentsForDownload.length == 0) {
-    window.renderApp(document.querySelector('main'), Main);
+    renderApp(document.querySelector('main'), Main);
   } else {
     requestTemplate.methodProperties.Documents = documentsForDownload;
     requestOptions.body = JSON.stringify(requestTemplate);

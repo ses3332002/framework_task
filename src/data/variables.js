@@ -1,5 +1,3 @@
-export const topLevelFrameBlocks = ['header', 'main', 'footer'];
-
 export const UIStrings = {
   ru: {
     invoiceString: 'Введите номер квитанции',
@@ -61,4 +59,4 @@ export const appState = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.7';
+export const appVersion = '1.8';

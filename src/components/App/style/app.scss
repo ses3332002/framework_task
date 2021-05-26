@@ -1,11 +1,11 @@
 @import './reset';
 @import './variables';
 @import './typo';
-@import '../components/Header/header';
-@import '../components/Footer/footer';
-@import '../components/Main/main';
+@import '../../Header/header';
+@import '../../Footer/footer';
+@import '../../Main/main';
 
-body {
+body > div {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;

@@ -1,6 +1,7 @@
 /** @jsx createElement */
 /** @jsxFrag createFragment */
-import { createElement, createFragment } from '../../framework/element';
+import { createElement } from '../../framework/element';
+import { renderApp } from '../../framework/renderApp';
 import { UIStrings } from '../../data/variables';
 import styles from './lang_selection';
 
@@ -13,11 +14,22 @@ export function LangSelection({ lang = window.appState.lang }) {
           className={styles.lang_choose__btn}
           data-lang={item}
           aria-label={langStrings[lang][ariaLabelName]}
-          onClick={e => window.changeLanguage(e)}
+          onClick={event => changeLanguage({ event })}
         ></button>
       );
     });
   }
 
   return <div className={styles.lang_choose}>{setupLangButtons(UIStrings)}</div>;
+}
+
+function changeLanguage({ event, lang = window.appState.lang }) {
+  if (lang == event.target.dataset.lang) {
+    return;
+  } else {
+    window.appState.lang = event.target.dataset.lang;
+    document.querySelector('HTML').setAttribute('lang', window.appState.lang);
+    renderApp();
+    document.querySelector(`button[data-lang=${window.appState.lang}]`).focus();
+  }
 }
