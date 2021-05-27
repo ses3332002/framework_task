@@ -7,6 +7,7 @@ export function renderApp(
   componentElement = document.getElementById('app'),
   ComponentFunction = App,
 ) {
-  componentElement.innerHTML = '';
-  componentElement.appendChild(<ComponentFunction />);
+  let oldNode = componentElement;
+  let newNode = <ComponentFunction />;
+  oldNode.replaceWith(newNode);
 }

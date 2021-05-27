@@ -8,10 +8,10 @@ import styles from './style/app';
 
 export function App({}) {
   return (
-    <>
+    <div id="app">
       <Header />
       <Main />
       <Footer />
-    </>
+    </div>
   );
 }

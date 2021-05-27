@@ -5,6 +5,7 @@ import { renderApp } from '../../framework/renderApp';
 import { RequestSet, requestSetStyles } from '../RequestSet/RequestSet';
 import { UIStrings } from '../../data/variables';
 import { getTrackingData } from '../../data/getTrackingData';
+import { Main } from '../Main/Main';
 
 import styles from './tracking_form';
 
@@ -72,7 +73,7 @@ export function TrackingForm({ lang = window.appState.lang }) {
 function resetForm() {
   let requestedDocuments = window.appState.requestedDocuments;
   requestedDocuments.length = 0;
-  renderApp();
+  renderApp(document.querySelector('main'), Main);
 }
 
 function addRequestSet(event) {
@@ -80,12 +81,12 @@ function addRequestSet(event) {
     DocumentNumber: '',
     Phone: '',
   });
-  renderApp();
+  renderApp(document.querySelector('main'), Main);
 }
 
 function removeRequestSet(event) {
   window.appState.requestedDocuments.pop();
-  renderApp();
+  renderApp(document.querySelector('main'), Main);
 }
 
 function updateRequestedDocuments() {
