@@ -1,7 +1,7 @@
 import { Main } from '../components/Main/Main';
 import { renderApp } from '../framework/renderApp';
 
-export function manageResults(downloadedResults, requestedDocuments) {
+export function manageResults({ downloadedResults, requestedDocuments }) {
   requestedDocuments.forEach((item, index) => {
     if (item.result == 'gotToBeDownloaded') {
       item.result = downloadedResults.shift();
@@ -9,5 +9,6 @@ export function manageResults(downloadedResults, requestedDocuments) {
       localStorage.setItem(item.result.Number, JSON.stringify(item.result));
     }
   });
+  window.appState.isLoading = false;
   renderApp(document.querySelector('main'), Main);
 }

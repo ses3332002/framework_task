@@ -15,7 +15,7 @@ export function TrackingForm({ lang = window.appState.lang }) {
       <form
         name="request_form"
         autocomplete="off"
-        onSubmit={e => getTrackingData(e)}
+        onSubmit={event => getTrackingData({ event })}
         onInput={updateRequestedDocuments}
       >
         {renderRequestSets({})}
@@ -23,13 +23,13 @@ export function TrackingForm({ lang = window.appState.lang }) {
           <input
             type="button"
             className={styles.request_add_set}
-            onClick={e => addRequestSet(e)}
+            onClick={event => addRequestSet(event)}
             value="+"
           />
           <input
             type="button"
             className={styles.request_remove_set}
-            onClick={e => removeRequestSet(e)}
+            onClick={event => removeRequestSet(event)}
             value="-"
             disabled={!(window.appState.requestedDocuments.length > 1)}
           />

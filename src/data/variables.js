@@ -18,6 +18,7 @@ export const UIStrings = {
     resultString: 'Результат',
     ruAriaLabelString: 'Русский язык',
     ukAriaLabelString: 'Украинский язык',
+    loaderString: 'Загрузка',
   },
   uk: {
     invoiceString: 'Введіть номер квитанції',
@@ -38,6 +39,7 @@ export const UIStrings = {
     resultString: 'Результат',
     ruAriaLabelString: 'Російська мова',
     ukAriaLabelString: 'Українська мова',
+    loaderString: 'Завантаження',
   },
 };
 
@@ -54,9 +56,10 @@ export const requestOptions = {
 
 export const appState = {
   lang: 'ru',
+  isLoading: false,
   requestedDocuments: [],
   documentsForDownload: [],
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.8';
+export const appVersion = '1.9';
