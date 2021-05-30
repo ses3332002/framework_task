@@ -18,6 +18,7 @@ export function getTrackingData({
     },
   };
 
+  documentsForDownload.length = 0;
   requestedDocuments.forEach(checkLocalStorage);
 
   if (documentsForDownload.length == 0) {
@@ -47,7 +48,6 @@ export function getTrackingData({
 
 function checkLocalStorage(requestedItem, index) {
   let documentsForDownload = window.appState.documentsForDownload;
-  documentsForDownload.length = 0;
   if (
     localStorage.getItem(requestedItem.DocumentNumber) &&
     JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)).requestTime >

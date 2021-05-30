@@ -34,7 +34,7 @@ function changeLanguage({ event, lang = window.appState.lang }) {
     window.appState.componentElementToRender = document.querySelector('#app');
     window.appState.componentFunctionToRender = App;
     window.appState.needToBeRendered = true;
-    // renderApp();
-    document.querySelector(`button[data-lang=${window.appState.lang}]`).focus();
+    // TODO: fix broken focusing
+    // document.querySelector(`button[data-lang=${window.appState.lang}]`).focus();
   }
 }
