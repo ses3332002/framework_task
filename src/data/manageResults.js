@@ -10,5 +10,7 @@ export function manageResults({ downloadedResults, requestedDocuments }) {
     }
   });
   window.appState.isLoading = false;
-  renderApp(document.querySelector('main'), Main);
+  window.appState.componentElementToRender = document.querySelector('main');
+  window.appState.componentFunctionToRender = Main;
+  window.appState.needToBeRendered = true;
 }

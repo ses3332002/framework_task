@@ -59,7 +59,10 @@ export const appState = {
   isLoading: false,
   requestedDocuments: [],
   documentsForDownload: [],
+  needToBeRendered: true,
+  componentElementToRender: null,
+  componentFunctionToRender: null,
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.9';
+export const appVersion = '1.10';

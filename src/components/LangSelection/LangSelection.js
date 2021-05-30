@@ -3,6 +3,8 @@
 import { createElement } from '../../framework/element';
 import { renderApp } from '../../framework/renderApp';
 import { UIStrings } from '../../data/variables';
+import { App } from '../App/App';
+
 import styles from './lang_selection';
 
 export function LangSelection({ lang = window.appState.lang }) {
@@ -29,7 +31,10 @@ function changeLanguage({ event, lang = window.appState.lang }) {
   } else {
     window.appState.lang = event.target.dataset.lang;
     document.querySelector('HTML').setAttribute('lang', window.appState.lang);
-    renderApp();
+    window.appState.componentElementToRender = document.querySelector('#app');
+    window.appState.componentFunctionToRender = App;
+    window.appState.needToBeRendered = true;
+    // renderApp();
     document.querySelector(`button[data-lang=${window.appState.lang}]`).focus();
   }
 }

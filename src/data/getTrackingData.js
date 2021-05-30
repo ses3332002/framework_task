@@ -9,9 +9,6 @@ export function getTrackingData({
   requestedDocuments = window.appState.requestedDocuments,
   documentsForDownload = window.appState.documentsForDownload,
 }) {
-  // let lang = window.appState.lang;
-  // let requestedDocuments = window.appState.requestedDocuments;
-  // let documentsForDownload = window.appState.documentsForDownload;
   event.preventDefault();
   const requestTemplate = {
     modelName: 'TrackingDocument',
@@ -24,10 +21,14 @@ export function getTrackingData({
   requestedDocuments.forEach(checkLocalStorage);
 
   if (documentsForDownload.length == 0) {
-    renderApp(document.querySelector('main'), Main);
+    window.appState.componentElementToRender = document.querySelector('main');
+    window.appState.componentFunctionToRender = Main;
+    window.appState.needToBeRendered = true;
   } else {
     window.appState.isLoading = true;
-    renderApp(document.querySelector('main'), Main);
+    window.appState.componentElementToRender = document.querySelector('main');
+    window.appState.componentFunctionToRender = Main;
+    window.appState.needToBeRendered = true;
     requestTemplate.methodProperties.Documents = documentsForDownload;
     requestOptions.body = JSON.stringify(requestTemplate);
 

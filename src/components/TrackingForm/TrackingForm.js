@@ -73,7 +73,9 @@ export function TrackingForm({ lang = window.appState.lang }) {
 function resetForm() {
   let requestedDocuments = window.appState.requestedDocuments;
   requestedDocuments.length = 0;
-  renderApp(document.querySelector('main'), Main);
+  window.appState.componentElementToRender = document.querySelector('main');
+  window.appState.componentFunctionToRender = Main;
+  window.appState.needToBeRendered = true;
 }
 
 function addRequestSet(event) {
@@ -81,12 +83,16 @@ function addRequestSet(event) {
     DocumentNumber: '',
     Phone: '',
   });
-  renderApp(document.querySelector('main'), Main);
+  window.appState.componentElementToRender = document.querySelector('main');
+  window.appState.componentFunctionToRender = Main;
+  window.appState.needToBeRendered = true;
 }
 
 function removeRequestSet(event) {
   window.appState.requestedDocuments.pop();
-  renderApp(document.querySelector('main'), Main);
+  window.appState.componentElementToRender = document.querySelector('main');
+  window.appState.componentFunctionToRender = Main;
+  window.appState.needToBeRendered = true;
 }
 
 function updateRequestedDocuments() {
