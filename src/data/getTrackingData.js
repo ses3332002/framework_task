@@ -1,61 +1,43 @@
-import { manageResults } from './manageResults';
-import { requestOptions, url, freshnessTime } from './variables';
-import { Main } from '../components/Main/Main';
-import { renderApp } from '../framework/renderApp';
+import { freshnessTime } from '../data/variables';
 
 export function getTrackingData({
   event,
-  lang = window.appState.lang,
-  requestedDocuments = window.appState.requestedDocuments,
-  documentsForDownload = window.appState.documentsForDownload,
+  requestedDocuments,
+  setRequestedDocuments,
+  documentsForDownload,
+  setDocumentsForDownload,
 }) {
   event.preventDefault();
-  const requestTemplate = {
-    modelName: 'TrackingDocument',
-    calledMethod: 'getStatusDocuments',
-    methodProperties: {
-      Language: lang,
-    },
-  };
-
-  documentsForDownload.length = 0;
   requestedDocuments.forEach(checkLocalStorage);
+  console.log('done preparing data');
 
-  if (documentsForDownload.length == 0) {
-    window.appState.componentElementToRender = document.querySelector('main');
-    window.appState.componentFunctionToRender = Main;
-    window.appState.needToBeRendered = true;
-  } else {
-    window.appState.isLoading = true;
-    window.appState.componentElementToRender = document.querySelector('main');
-    window.appState.componentFunctionToRender = Main;
-    window.appState.needToBeRendered = true;
-    requestTemplate.methodProperties.Documents = documentsForDownload;
-    requestOptions.body = JSON.stringify(requestTemplate);
-
-    fetch(url, requestOptions)
-      .then(response => {
-        return response.json();
-      })
-      .then(result => {
-        manageResults({ downloadedResults: result.data, requestedDocuments });
-      })
-      .catch(err => {
-        console.error('there was some error:', err);
-      });
-  }
-}
-
-function checkLocalStorage(requestedItem, index) {
-  let documentsForDownload = window.appState.documentsForDownload;
-  if (
-    localStorage.getItem(requestedItem.DocumentNumber) &&
-    JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)).requestTime >
-      new Date() - freshnessTime
-  ) {
-    requestedItem.result = JSON.parse(localStorage.getItem(requestedItem.DocumentNumber));
-  } else {
-    documentsForDownload.push(requestedItem);
-    requestedItem.result = 'gotToBeDownloaded';
+  function checkLocalStorage(requestedItem, index) {
+    console.log('checking LS');
+    if (
+      localStorage.getItem(requestedItem.DocumentNumber) &&
+      JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)).requestTime >
+        new Date() - freshnessTime
+    ) {
+      setRequestedDocuments(requestedDocuments => [
+        ...requestedDocuments.slice(0, index),
+        {
+          DocumentNumber: requestedItem.DocumentNumber,
+          Phone: requestedItem.Phone,
+          result: JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)),
+        },
+        ...requestedDocuments.slice(index + 1),
+      ]);
+    } else {
+      setDocumentsForDownload(documentsForDownload => [...documentsForDownload, requestedItem]);
+      setRequestedDocuments(requestedDocuments => [
+        ...requestedDocuments.slice(0, index),
+        {
+          DocumentNumber: requestedItem.DocumentNumber,
+          Phone: requestedItem.Phone,
+          result: 'gotToBeDownloaded',
+        },
+        ...requestedDocuments.slice(index + 1),
+      ]);
+    }
   }
 }

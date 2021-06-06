@@ -1,11 +1,8 @@
-import { appState } from './data/variables';
-import { renderApp } from './framework/renderApp';
+import { render } from './framework/render';
 import { App } from './components/App/App';
+// import { appState } from './data/variables';
 
 // console.log(process.env.API_KEY);
+// window.appState = appState;
 
-window.appState = appState;
-window.appState.componentElementToRender = document.querySelector('#app');
-window.appState.componentFunctionToRender = App;
-
-renderApp();
+render(document.querySelector('#app'), App);

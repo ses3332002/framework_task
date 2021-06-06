@@ -5,7 +5,7 @@ import { createElement, createFragment } from '../../framework/element';
 import { UIStrings } from '../../data/variables';
 import styles from './result';
 
-export function Result({ result, lang = window.appState.lang }) {
+export function Result({ result, lang }) {
   if (result) {
     if (result.StatusCode == '3') {
       return (

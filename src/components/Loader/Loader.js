@@ -4,8 +4,8 @@ import { createElement, createFragment } from '../../framework/element';
 import { UIStrings } from '../../data/variables';
 import styles from './loader';
 
-export function Loader({ lang = window.appState.lang }) {
-  if (!window.appState.isLoading) {
+export function Loader({ lang, loadingState }) {
+  if (!loadingState) {
     return <></>;
   } else {
     return (
