@@ -6,6 +6,7 @@ export function getTrackingData({
   setRequestedDocuments,
   documentsForDownload,
   setDocumentsForDownload,
+  setRequestCompleted,
 }) {
   event.preventDefault();
   requestedDocuments.forEach(checkLocalStorage);
@@ -38,6 +39,8 @@ export function getTrackingData({
         },
         ...requestedDocuments.slice(index + 1),
       ]);
+      console.log('setRequestCompleted(false)');
+      setRequestCompleted(false);
     }
   }
 }

@@ -6,12 +6,13 @@ import { Loader } from '../Loader/Loader';
 import { useEffect, useState } from '../../framework/hooks.js';
 
 export function Main({ lang }) {
-  let [loadingState, setLoadingState] = useState(false);
+  // let [loadingState, setLoadingState] = useState(false);
 
   return (
     <main>
-      <TrackingForm lang={lang} setLoadingState={setLoadingState} />
-      <Loader lang={lang} loadingState={loadingState} />
+      <TrackingForm lang={lang} />
     </main>
   );
 }
+// <TrackingForm lang={lang} setLoadingState={setLoadingState} />
+// <Loader lang={lang} loadingState={loadingState} />
