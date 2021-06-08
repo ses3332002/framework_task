@@ -4,43 +4,27 @@ export function getTrackingData({
   event,
   requestedDocuments,
   setRequestedDocuments,
-  documentsForDownload,
   setDocumentsForDownload,
-  setRequestCompleted,
 }) {
   event.preventDefault();
-  requestedDocuments.forEach(checkLocalStorage);
-  console.log('done preparing data');
+  checkLocalStorage(requestedDocuments);
 
-  function checkLocalStorage(requestedItem, index) {
-    console.log('checking LS');
+  function checkLocalStorage(requestedItem) {
     if (
       localStorage.getItem(requestedItem.DocumentNumber) &&
       JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)).requestTime >
         new Date() - freshnessTime
     ) {
-      setRequestedDocuments(requestedDocuments => [
-        ...requestedDocuments.slice(0, index),
-        {
-          DocumentNumber: requestedItem.DocumentNumber,
-          Phone: requestedItem.Phone,
-          result: JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)),
-        },
-        ...requestedDocuments.slice(index + 1),
-      ]);
+      setRequestedDocuments(requestedDocuments => ({
+        ...requestedDocuments,
+        result: JSON.parse(localStorage.getItem(requestedItem.DocumentNumber)),
+      }));
     } else {
-      setDocumentsForDownload(documentsForDownload => [...documentsForDownload, requestedItem]);
-      setRequestedDocuments(requestedDocuments => [
-        ...requestedDocuments.slice(0, index),
-        {
-          DocumentNumber: requestedItem.DocumentNumber,
-          Phone: requestedItem.Phone,
-          result: 'gotToBeDownloaded',
-        },
-        ...requestedDocuments.slice(index + 1),
-      ]);
-      console.log('setRequestCompleted(false)');
-      setRequestCompleted(false);
+      setDocumentsForDownload(requestedItem);
+      setRequestedDocuments(requestedDocuments => ({
+        ...requestedDocuments,
+        result: 'gotToBeDownloaded',
+      }));
     }
   }
 }

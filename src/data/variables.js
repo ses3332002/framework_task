@@ -55,6 +55,4 @@ export const requestOptions = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.11';
-
-export const isFunction = func => typeof func === 'function';
+export const appVersion = '1.11R_mini';

@@ -1,7 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement, createFragment } from '../../framework/element';
-import { useEffect, useState } from '../../framework/hooks.js';
+import React, { useState, useEffect } from 'react';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { Main } from '../Main/Main';

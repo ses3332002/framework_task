@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
+import React, { useEffect, useState } from 'react';
 import { UIStrings } from '../../data/variables';
 
 import styles from './lang_selection';
@@ -11,6 +9,7 @@ export function LangSelection({ lang, setLang }) {
       let ariaLabelName = item + 'AriaLabelString';
       return (
         <button
+          key={item}
           className={styles.lang_choose__btn}
           data-lang={item}
           aria-label={langStrings[lang][ariaLabelName]}

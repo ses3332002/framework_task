@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
+import React from 'react';
 import { UIStrings } from '../../data/variables';
 import { LangSelection } from '../LangSelection/LangSelection';
 

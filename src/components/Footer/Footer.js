@@ -1,6 +1,4 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
+import React from 'react';
 import { UIStrings, appVersion } from '../../data/variables';
 
 export function Footer({ lang }) {

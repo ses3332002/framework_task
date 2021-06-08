@@ -1,8 +1,7 @@
-import { render } from './framework/render';
+import React from 'react';
+import { render } from 'react-dom';
 import { App } from './components/App/App';
-// import { appState } from './data/variables';
 
 // console.log(process.env.API_KEY);
-// window.appState = appState;
 
-render(document.querySelector('#app'), App);
+render(<App />, document.querySelector('#app'));
