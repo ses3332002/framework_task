@@ -1,13 +1,9 @@
-/** @jsx createElement */
-/** @jsxFrag createFragment */
-import { createElement } from '../../framework/element';
-// import { updateRequestedDocuments } from '../TrackingForm/TrackingForm';
-import { useEffect, useState } from '../../framework/hooks.js';
+import React, { useEffect, useState } from 'react';
+import { Result } from '../Result/Result';
 
 import { UIStrings } from '../../data/variables';
-import { Result } from '../Result/Result';
 import styles from './request_set';
-export { styles as requestSetStyles };
+// export { styles as requestSetStyles };
 
 export function RequestSet({
   DocumentNumber,
@@ -48,7 +44,7 @@ export function RequestSet({
             setRequest(request => ({ ...request, DocumentNumber: event.target.value }))
           }
         />
-        <label For="invoice_number">{UIStrings[lang].invoiceString}</label>
+        <label htmlFor="invoice_number">{UIStrings[lang].invoiceString}</label>
       </div>
       <div className={styles.request_item}>
         <input
@@ -60,7 +56,7 @@ export function RequestSet({
           placeholder=" "
           onChange={event => setRequest(request => ({ ...request, Phone: event.target.value }))}
         />
-        <label For="phone_number">{UIStrings[lang].phoneString}</label>
+        <label htmlFor="phone_number">{UIStrings[lang].phoneString}</label>
       </div>
       <div className={styles.tracking_result}>
         <Result lang={lang} result={result} />
