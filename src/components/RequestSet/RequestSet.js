@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Result } from '../Result/Result';
-
 import { UIStrings } from '../../data/variables';
 import styles from './request_set';
-// export { styles as requestSetStyles };
 
 export function RequestSet({
   DocumentNumber,
@@ -14,22 +12,6 @@ export function RequestSet({
   setRequestedDocuments,
   requestedDocuments,
 }) {
-  let [request, setRequest] = useState({ DocumentNumber, Phone, result });
-
-  useEffect(() => {
-    setRequestedDocuments(requestedDocuments => {
-      return [
-        ...requestedDocuments.slice(0, requestSetIndex),
-        {
-          DocumentNumber: request.DocumentNumber,
-          Phone: request.Phone,
-          result: request.result,
-        },
-        ...requestedDocuments.slice(requestSetIndex + 1),
-      ];
-    });
-  }, [request]);
-
   return (
     <div className={styles.request_set}>
       <div className={styles.request_item}>
@@ -37,11 +19,21 @@ export function RequestSet({
           type="text"
           id="invoice_number"
           name="invoice_number"
-          value={request.DocumentNumber}
+          value={DocumentNumber}
           placeholder=" "
           required
           onChange={event =>
-            setRequest(request => ({ ...request, DocumentNumber: event.target.value }))
+            setRequestedDocuments(requestedDocuments => {
+              return [
+                ...requestedDocuments.slice(0, requestSetIndex),
+                {
+                  DocumentNumber: event.target.value,
+                  Phone: Phone,
+                  result: result,
+                },
+                ...requestedDocuments.slice(requestSetIndex + 1),
+              ];
+            })
           }
         />
         <label htmlFor="invoice_number">{UIStrings[lang].invoiceString}</label>
@@ -51,10 +43,22 @@ export function RequestSet({
           type="text"
           id="phone_number"
           name="phone_number"
-          value={request.Phone}
+          value={Phone}
           pattern="[0-9]{0,10}"
           placeholder=" "
-          onChange={event => setRequest(request => ({ ...request, Phone: event.target.value }))}
+          onChange={event =>
+            setRequestedDocuments(requestedDocuments => {
+              return [
+                ...requestedDocuments.slice(0, requestSetIndex),
+                {
+                  DocumentNumber: DocumentNumber,
+                  Phone: event.target.value,
+                  result: result,
+                },
+                ...requestedDocuments.slice(requestSetIndex + 1),
+              ];
+            })
+          }
         />
         <label htmlFor="phone_number">{UIStrings[lang].phoneString}</label>
       </div>

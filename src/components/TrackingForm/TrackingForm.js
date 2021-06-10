@@ -29,7 +29,7 @@ export function TrackingForm({ lang, setLoadingState }) {
       return;
     } else {
       setLoadingState(true);
-      requestTemplate.methodProperties.Documents = [documentsForDownload];
+      requestTemplate.methodProperties.Documents = documentsForDownload;
       requestOptions.body = JSON.stringify(requestTemplate);
 
       fetch(url, requestOptions)
@@ -41,6 +41,7 @@ export function TrackingForm({ lang, setLoadingState }) {
             downloadedResults: result.data,
             requestedDocuments,
             setRequestedDocuments,
+            setDocumentsForDownload,
           });
         })
         .catch(err => {
@@ -64,7 +65,7 @@ export function TrackingForm({ lang, setLoadingState }) {
           });
         }}
       >
-        {renderRequestSets(requestedDocuments)}
+        {renderRequestSets(requestedDocuments, setRequestedDocuments)}
         <div className={styles.request_set_buttons}>
           <input
             type="button"
@@ -100,11 +101,13 @@ export function TrackingForm({ lang, setLoadingState }) {
   );
 
   function resetForm({ setRequestedDocuments }) {
-    setRequestedDocuments({
-      DocumentNumber: '',
-      Phone: '',
-      result: null,
-    });
+    setRequestedDocuments([
+      {
+        DocumentNumber: '',
+        Phone: '',
+        result: null,
+      },
+    ]);
   }
 
   function addRequestSet({ requestedDocuments, setRequestedDocuments }) {
@@ -122,7 +125,7 @@ export function TrackingForm({ lang, setLoadingState }) {
     setRequestedDocuments(requestedDocuments => requestedDocuments.slice(0, -1));
   }
 
-  function renderRequestSets(requestedDocuments) {
+  function renderRequestSets(requestedDocuments, setRequestedDocuments) {
     return requestedDocuments.map((item, index) => {
       return (
         <RequestSet
@@ -139,15 +142,28 @@ export function TrackingForm({ lang, setLoadingState }) {
     });
   }
 
-  function manageResults({ downloadedResults, requestedDocuments, setRequestedDocuments }) {
-    if (requestedDocuments.result == 'gotToBeDownloaded') {
-      let resultData = downloadedResults.shift();
-      resultData.requestTime = +new Date();
-      localStorage.setItem(resultData.Number, JSON.stringify(resultData));
-      setRequestedDocuments(requestedDocuments => ({
-        ...requestedDocuments,
-        result: resultData,
-      }));
-    }
+  function manageResults({
+    downloadedResults,
+    requestedDocuments,
+    setRequestedDocuments,
+    setDocumentsForDownload,
+  }) {
+    requestedDocuments.forEach((item, index) => {
+      if (item.result == 'gotToBeDownloaded') {
+        let resultData = downloadedResults.shift();
+        resultData.requestTime = +new Date();
+        localStorage.setItem(resultData.Number, JSON.stringify(resultData));
+        setRequestedDocuments(requestedDocuments => [
+          ...requestedDocuments.slice(0, index),
+          {
+            DocumentNumber: item.DocumentNumber,
+            Phone: item.Phone,
+            result: resultData,
+          },
+          ...requestedDocuments.slice(index + 1),
+        ]);
+      }
+    });
+    setDocumentsForDownload([]);
   }
 }

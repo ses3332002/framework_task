@@ -55,4 +55,4 @@ export const requestOptions = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.11R_mini';
+export const appVersion = '1.11R';
