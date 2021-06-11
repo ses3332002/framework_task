@@ -13,7 +13,7 @@ h2 {
 
 .tracking_result__caption,
 .tracking_result__text {
-  height: 25px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -27,4 +27,5 @@ h2 {
 
 .request_action {
   font-size: $fontsize3;
+  margin: 6px;
 }

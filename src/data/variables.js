@@ -9,8 +9,8 @@ export const UIStrings = {
     placesString: 'Мест',
     statusString: 'Текущий статус',
     requestString: 'Заказать',
-    yesString: 'да',
-    noString: 'нет',
+    yesString: 'Да',
+    noString: 'Нет',
     returnString: 'Можно вернуть',
     redirectString: 'Можно переслать',
     headerString: 'Трекинг посылок Новой почты',
@@ -19,6 +19,7 @@ export const UIStrings = {
     ruAriaLabelString: 'Русский язык',
     ukAriaLabelString: 'Украинский язык',
     loaderString: 'Загрузка',
+    returnOrderString: 'Вернуть',
   },
   uk: {
     invoiceString: 'Введіть номер квитанції',
@@ -30,8 +31,8 @@ export const UIStrings = {
     placesString: 'Місць',
     statusString: 'Поточний статус',
     requestString: 'Замовити',
-    yesString: 'так',
-    noString: 'ні',
+    yesString: 'Так',
+    noString: 'Ні',
     returnString: 'Можливо повернути',
     redirectString: 'Можливо переслати',
     headerString: 'Трекінг посилок Нової пошти',
@@ -40,6 +41,7 @@ export const UIStrings = {
     ruAriaLabelString: 'Російська мова',
     ukAriaLabelString: 'Українська мова',
     loaderString: 'Завантаження',
+    returnOrderString: 'Повернути',
   },
 };
 
@@ -55,4 +57,4 @@ export const requestOptions = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.11R';
+export const appVersion = '1.12R';

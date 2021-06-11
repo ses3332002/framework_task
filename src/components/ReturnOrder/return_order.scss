@@ -1,0 +1,18 @@
+@import '../App/style/variables';
+
+.return_order {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.return_order_info {
+  font-size: $fontsize4;
+}
+
+.request_action {
+  font-size: $fontsize3;
+  padding: 4px;
+}
