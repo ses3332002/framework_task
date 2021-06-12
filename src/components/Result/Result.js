@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ReturnOrder } from '../ReturnOrder/ReturnOrder';
+import { ReturningOrder } from '../ReturningOrder/ReturningOrder';
 import { UIStrings, requestOptions, url } from '../../data/variables';
 import styles from './result';
 
@@ -26,8 +26,9 @@ export function Result({ result, lang }) {
       .then(result => {
         if (!result.success) {
           setReturning({ info: result.errors[0], returnAbility: false });
+        } else {
+          setReturning({ info: result.data.Ref, returnAbility: true });
         }
-        //TODO: emplement reaction on success
       })
       .catch(err => {
         console.error('there was some error:', err);
@@ -82,7 +83,7 @@ export function Result({ result, lang }) {
               />
             </div>
           </div>
-          <ReturnOrder returning={returning} lang={lang} />
+          <ReturningOrder returning={returning} lang={lang} number={result.Number} />
           <div className={styles.tracking_result__wrapper}>
             <div className={styles.tracking_result__caption}>{UIStrings[lang].redirectString}:</div>
             <div className={styles.tracking_result__text}>
