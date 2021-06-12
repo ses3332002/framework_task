@@ -20,6 +20,8 @@ export const UIStrings = {
     ukAriaLabelString: 'Украинский язык',
     loaderString: 'Загрузка',
     returnOrderString: 'Вернуть',
+    returnOrderDoneString: 'Заказано',
+    returnOrderFaultString: 'Ошибка',
   },
   uk: {
     invoiceString: 'Введіть номер квитанції',
@@ -42,6 +44,8 @@ export const UIStrings = {
     ukAriaLabelString: 'Українська мова',
     loaderString: 'Завантаження',
     returnOrderString: 'Повернути',
+    returnOrderDoneString: 'Замовлено',
+    returnOrderFaultString: 'Помилка',
   },
 };
 
@@ -57,4 +61,4 @@ export const requestOptions = {
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.12R';
+export const appVersion = '1.13R';

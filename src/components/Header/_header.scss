@@ -1,9 +1,12 @@
 header {
-  height: 40px;
-  line-height: 40px;
   font-size: $fontsize1;
   text-align: center;
   @media screen and (max-width: $sitesize3) {
     height: auto;
+  }
+
+  h1 {
+    height: 40px;
+    line-height: 40px;
   }
 }
