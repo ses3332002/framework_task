@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { RequestSet } from '../RequestSet/RequestSet';
+import RequestSet from '../RequestSet';
 import { UIStrings, requestOptions, url } from '../../data/variables';
 import { getTrackingData } from '../../data/getTrackingData';
 
 import styles from './tracking_form';
 
-export function TrackingForm({ lang, setLoadingState }) {
+export default function TrackingForm({ lang, setLoadingState }) {
   let [requestedDocuments, setRequestedDocuments] = useState([
     {
       DocumentNumber: '',
@@ -25,7 +25,7 @@ export function TrackingForm({ lang, setLoadingState }) {
   };
 
   useEffect(() => {
-    if (documentsForDownload.length == 0) {
+    if (documentsForDownload.length === 0) {
       return;
     } else {
       setLoadingState(true);
@@ -149,7 +149,7 @@ export function TrackingForm({ lang, setLoadingState }) {
     setDocumentsForDownload,
   }) {
     requestedDocuments.forEach((item, index) => {
-      if (item.result == 'gotToBeDownloaded') {
+      if (item.result === 'gotToBeDownloaded') {
         let resultData = downloadedResults.shift();
         resultData.requestTime = +new Date();
         localStorage.setItem(resultData.Number, JSON.stringify(resultData));

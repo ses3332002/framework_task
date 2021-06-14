@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
-import { Main } from '../Main/Main';
+import Header from '../Header';
+import Footer from '../Footer';
+import Main from '../Main';
 
 import styles from './style/app';
 
-export function App() {
+export default function App() {
   let [lang, setLang] = useState('ru');
 
   useEffect(() => {

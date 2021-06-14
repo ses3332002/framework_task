@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UIStrings, requestOptions, url } from '../../data/variables';
 import styles from './returning_order';
 
-export function ReturningOrder({ returning, lang, number }) {
+export default function ReturningOrder({ returning, lang, number }) {
   const returnStatuses = ['canBe', 'done', 'fault'];
   let [returnStatus, setReturnStatus] = useState(returnStatuses[0]);
 
@@ -10,13 +10,10 @@ export function ReturningOrder({ returning, lang, number }) {
     switch (returnStatus) {
       case returnStatuses[0]:
         return UIStrings[lang].returnOrderString;
-      // break;
       case returnStatuses[1]:
         return UIStrings[lang].returnOrderDoneString;
-      // break;
       case returnStatuses[2]:
         return UIStrings[lang].returnOrderFaultString;
-      // break;
     }
   }
 
@@ -62,7 +59,7 @@ export function ReturningOrder({ returning, lang, number }) {
         <input
           type="button"
           className={styles.request_action}
-          disabled={!(returning.returnAbility && returnStatus == returnStatuses[0])}
+          disabled={!(returning.returnAbility && returnStatus === returnStatuses[0])}
           value={getReturnButtonString()}
           onClick={event => returnParcel(returning.data)}
         />

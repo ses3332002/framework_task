@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ReturningOrder } from '../ReturningOrder/ReturningOrder';
+import ReturningOrder from '../ReturningOrder';
 import { UIStrings, requestOptions, url } from '../../data/variables';
 import styles from './result';
 
-export function Result({ result, lang }) {
+export default function Result({ result, lang }) {
   let [returning, setReturning] = useState(null);
   useEffect(() => {
     setReturning(null);
@@ -36,7 +36,7 @@ export function Result({ result, lang }) {
   }
 
   if (result) {
-    if (result.StatusCode == '3') {
+    if (result.StatusCode === '3') {
       return (
         <>
           <h2>{UIStrings[lang].resultString}:</h2>
@@ -77,7 +77,7 @@ export function Result({ result, lang }) {
               <input
                 type="button"
                 className={styles.request_action}
-                // disabled={!result.PossibilityCreateReturn}
+                disabled={!result.PossibilityCreateReturn}
                 onClick={event => checkReturning(result.Number)}
                 value={UIStrings[lang].requestString}
               />

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Result } from '../Result/Result';
+import Result from '../Result';
 import { UIStrings } from '../../data/variables';
 import styles from './request_set';
 
-export function RequestSet({
+export default function RequestSet({
   DocumentNumber,
   Phone,
   result,

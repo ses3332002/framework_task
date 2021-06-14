@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { UIStrings } from '../../data/variables';
 
 import styles from './lang_selection';
 
-export function LangSelection({ lang, setLang }) {
+export default function LangSelection({ lang, setLang }) {
   function setupLangButtons(langStrings) {
     return Object.keys(langStrings).map((item, index) => {
       let ariaLabelName = item + 'AriaLabelString';
@@ -22,7 +22,7 @@ export function LangSelection({ lang, setLang }) {
   return <div className={styles.lang_choose}>{setupLangButtons(UIStrings)}</div>;
 
   function changeLanguage(event) {
-    if (lang == event.target.dataset.lang) {
+    if (lang === event.target.dataset.lang) {
       return;
     } else {
       setLang(event.target.dataset.lang);

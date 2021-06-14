@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { TrackingForm } from '../TrackingForm/TrackingForm';
-import { Loader } from '../Loader/Loader';
+import React, { useState } from 'react';
+import TrackingForm from '../TrackingForm';
+import Loader from '../Loader';
 
-export function Main({ lang }) {
+export default function Main({ lang }) {
   let [loadingState, setLoadingState] = useState(false);
 
   return (

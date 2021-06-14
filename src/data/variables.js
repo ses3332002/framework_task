@@ -52,13 +52,11 @@ export const UIStrings = {
 export const url = 'https://api.novaposhta.ua/v2.0/json/';
 
 export const requestOptions = {
-  // contentType: 'application/json',
   mode: 'cors',
   cache: 'no-cache',
   redirect: 'follow',
   method: 'POST',
-  // dataType: 'jsonp',
 };
 
 export const freshnessTime = 18000000;
-export const appVersion = '1.13R';
+export const appVersion = '1.14R';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { UIStrings } from '../../data/variables';
-import { LangSelection } from '../LangSelection/LangSelection';
+import LangSelection from '../LangSelection';
 
-export function Header({ lang, setLang }) {
+export default function Header({ lang, setLang }) {
   return (
     <header>
       <h1>{UIStrings[lang].headerString}</h1>
